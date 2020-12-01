@@ -1,19 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-//import { Test } from './Loader.styles';
+import React, { Component } from "react";
+import Loader from "react-loader-spinner";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
-const Loader = (props) => (
-  <div className="LoaderWrapper">
-    Test content
-  </div>
-);
-
-Loader.propTypes = {
-  // bla: PropTypes.string,
-};
-
-Loader.defaultProps = {
-  // bla: 'test',
-};
-
-export default Loader;
+export default class Load extends Component {
+  render() {
+    return (
+      <Loader
+        type="BallTriangle"
+        color="#00BFFF"
+        height={100}
+        width={100}
+        timeout={3000}
+      />
+    );
+  }
+}

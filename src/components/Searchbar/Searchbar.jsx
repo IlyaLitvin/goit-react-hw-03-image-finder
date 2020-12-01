@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 export default class Searchbar extends Component {
-  // static propTypes = {
-  //   prop: PropTypes,
-  // };
+  static propTypes = {
+    onSubmit: PropTypes.func.isRequired,
+  };
 
   state = {
     term: "",

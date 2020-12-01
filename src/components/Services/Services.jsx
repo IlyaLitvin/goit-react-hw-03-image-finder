@@ -1,4 +1,5 @@
 import axios from "axios";
+import PropTypes from "prop-types";
 
 const Services = (query, page, TOKEN) => {
   return axios
@@ -7,4 +8,11 @@ const Services = (query, page, TOKEN) => {
     )
     .then((res) => res.data.hits);
 };
+
+Services.propTypes = {
+  query: PropTypes.string.isRequired,
+  page: PropTypes.number.isRequired,
+  TOKEN: PropTypes.string.isRequired,
+};
+
 export default Services;
