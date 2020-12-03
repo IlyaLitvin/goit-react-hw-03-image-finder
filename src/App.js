@@ -13,7 +13,6 @@ export default class App extends Component {
     error: null,
     query: "",
     page: 1,
-    TOKEN: "18953404-219a87b5236596fa40acd8a55",
     largeImageUrl: null,
   };
 
@@ -33,6 +32,11 @@ export default class App extends Component {
     if (prevQuery !== nextQuery) {
       this.fetchArticles();
     }
+    const { scrollTop, clientHeight } = document.documentElement;
+    window.scrollTo({
+      top: scrollTop + clientHeight + 10000,
+      behavior: "smooth",
+    });
   }
 
   handleSearch = (querySearch) => {
@@ -44,9 +48,9 @@ export default class App extends Component {
   };
 
   fetchArticles = () => {
-    const { query, page, TOKEN } = this.state;
+    const { query, page } = this.state;
     this.setState({ loading: true });
-    Services.Services(query, page, TOKEN)
+    Services.Services(query, page)
       .then((data) => {
         if (data.length < 1) {
           this.setState({ error: true });
@@ -56,11 +60,6 @@ export default class App extends Component {
             page: prevState.page + 1,
             error: false,
           }));
-          const { scrollTop, clientHeight } = document.documentElement;
-          window.scrollTo({
-            top: scrollTop + clientHeight,
-            behavior: "smooth",
-          });
         }
       })
       .catch((error) => this.setState({ error }))
